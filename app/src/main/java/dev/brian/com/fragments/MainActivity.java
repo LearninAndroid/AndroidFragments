@@ -81,12 +81,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new Import()).commit();
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new Tools()).commit();
+
 
         } else if (id == R.id.nav_share) {
 
@@ -97,5 +101,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new Home()).commit();
+
     }
 }
